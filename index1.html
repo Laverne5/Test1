@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد فطر مبارك</title>
+    <style>
+        @font-face {
+            font-family: 'HandelGothicArabic';
+            src: url('fonts/ITCHandelGothicArabic-Bold.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f8e9d2, #f3c6a5);
+            font-family: 'HandelGothicArabic', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .card {
+            max-width: 600px;
+            width: 90%;
+            padding: 20px;
+            background: url('https://drive.google.com/uc?id=1c9eftktmlrcddfymic8sdrdvfh2flwb0') no-repeat center/cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0 0 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin: 0 0 20px;
+        }
+
+        .input-container {
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+            text-align: center;
+            font-family: 'HandelGothicArabic', sans-serif;
+            outline: none;
+        }
+
+        #userNameDisplay {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .download-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background: #8b5e34;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            p { font-size: 1rem; }
+            input { font-size: 0.9rem; }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function updateName() {
+            const input = document.getElementById('userName');
+            const display = document.getElementById('userNameDisplay');
+            display.textContent = input.value || 'ضيف عزيز';
+        }
+
+        function downloadCard() {
+            const card = document.querySelector('.card');
+            html2canvas(card).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'eid_greeting.png';
+                link.click();
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="card" id="card">
+        <h1>عيد فطر مبارك!</h1>
+        <p>تقبل الله منا ومنكم صالح الأعمال، وجعل أيامكم مليئة بالفرح والسعادة.</p>
+        <div class="input-container">
+            <input type="text" id="userName" placeholder="اكتب اسمك هنا" oninput="updateName()">
+        </div>
+        <div id="userNameDisplay">ضيف عزيز</div>
+    </div>
+    <button class="download-btn" onclick="downloadCard()">تحميل البطاقة</button>
+</body>
+</html>
