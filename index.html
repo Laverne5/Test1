@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>عيد فطر مبارك</title>
     <style>
         @font-face {
@@ -31,7 +31,7 @@
             max-width: 600px;
             width: 90%;
             padding: 20px;
-            background: url('https://drive.google.com/uc?id=1c9eftktmlrcddfymic8sdrdvfh2flwb0') no-repeat center/cover;
+            background: url('https://raw.githubusercontent.com/Laverne5/PIC1/main/EID.jpg') no-repeat center/cover;
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1.5s ease-in-out;
@@ -102,7 +102,7 @@
 
         function downloadCard() {
             const card = document.querySelector('.card');
-            html2canvas(card).then(canvas => {
+            html2canvas(card, { useCORS: true, scale: 3 }).then(canvas => {
                 const link = document.createElement('a');
                 link.href = canvas.toDataURL('image/png');
                 link.download = 'eid_greeting.png';
